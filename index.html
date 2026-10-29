@@ -13,9 +13,15 @@
     <form class="gate-card" id="gateForm" autocomplete="off">
       <p class="eyebrow">THE TRAIN TO YOU</p>
       <h1 class="gate-title">请出示车票</h1>
-      <label class="gate-hint" for="gateInput">我们在一起是什么时候？</label>
-      <input class="gate-input" id="gateInput" inputmode="numeric" placeholder="精确到分钟" enterkeyhint="go">
-      <button class="gate-btn" type="submit">检票进站</button>
+      <div class="gate-wait" id="gateWait" hidden>
+        <p class="gate-hint">列车将于 10 月 30 日 00:00 到站</p>
+        <p class="gate-countdown" id="gateCountdown"></p>
+      </div>
+      <div id="gateTicket" hidden>
+        <label class="gate-hint" for="gateInput">我们在一起是什么时候？</label>
+        <input class="gate-input" id="gateInput" inputmode="numeric" placeholder="精确到分钟" enterkeyhint="go">
+        <button class="gate-btn" type="submit">检票进站</button>
+      </div>
       <p class="gate-msg" id="gateMsg" aria-live="polite"></p>
     </form>
   </div>

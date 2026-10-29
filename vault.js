@@ -89,13 +89,48 @@
   });
 
   // 之前在这台手机上检过票，就直接进站
-  let saved = null;
-  try { saved = localStorage.getItem(STORE); } catch (e) {}
-  if (saved) {
-    msg.textContent = '检票中……';
-    open(saved).then(() => pass(saved)).catch(() => {
-      msg.textContent = '';
-      try { localStorage.removeItem(STORE); } catch (e) {}
-    });
+  function ready() {
+    document.getElementById('gateWait').hidden = true;
+    document.getElementById('gateTicket').hidden = false;
+    let saved = null;
+    try { saved = localStorage.getItem(STORE); } catch (e) {}
+    if (saved) {
+      msg.textContent = '检票中……';
+      open(saved).then(() => pass(saved)).catch(() => {
+        msg.textContent = '';
+        try { localStorage.removeItem(STORE); } catch (e) {}
+      });
+    }
   }
+
+  // 到站时间之前只显示倒计时。以服务器时间为准，改手机时间没用
+  const OPEN_AT = new Date('2026-10-30T00:00:00+08:00').getTime();
+  async function serverOffset() {
+    try {
+      const r = await fetch(location.href, { method: 'HEAD', cache: 'no-store' });
+      const t = Date.parse(r.headers.get('Date'));
+      return Number.isNaN(t) ? 0 : t - Date.now();
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  serverOffset().then((offset) => {
+    const pad = (n) => String(n).padStart(2, '0');
+    const wait = document.getElementById('gateWait');
+    const countdown = document.getElementById('gateCountdown');
+    function tick() {
+      const left = Math.floor((OPEN_AT - Date.now() - offset) / 1000);
+      if (left <= 0) {
+        clearInterval(timer);
+        ready();
+        return;
+      }
+      wait.hidden = false;
+      const d = Math.floor(left / 86400);
+      countdown.textContent = `${d > 0 ? `${d} 天 ` : ''}${pad(Math.floor(left / 3600) % 24)}:${pad(Math.floor(left / 60) % 60)}:${pad(left % 60)}`;
+    }
+    const timer = setInterval(tick, 1000);
+    tick();
+  });
 })();

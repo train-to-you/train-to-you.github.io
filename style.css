@@ -451,3 +451,10 @@ body.locked .hero, body.locked main, body.locked .ending, body.locked .music { d
 .gate-btn:hover { background: rgba(143, 179, 217, 0.1); }
 .gate-btn:disabled { opacity: 0.5; }
 .gate-msg { min-height: 1.6em; margin: 18px 0 0; font-size: 13px; color: var(--muted); }
+.gate-countdown {
+  margin: 0;
+  font: 300 34px/1.4 var(--sans);
+  letter-spacing: 0.08em;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
