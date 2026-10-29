@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0B1526">
+  <title>开往你的列车</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="locked">
+  <div class="gate" id="gate">
+    <form class="gate-card" id="gateForm" autocomplete="off">
+      <p class="eyebrow">THE TRAIN TO YOU</p>
+      <h1 class="gate-title">请出示车票</h1>
+      <label class="gate-hint" for="gateInput">我们在一起是什么时候？</label>
+      <input class="gate-input" id="gateInput" inputmode="numeric" placeholder="精确到分钟" enterkeyhint="go">
+      <button class="gate-btn" type="submit">检票进站</button>
+      <p class="gate-msg" id="gateMsg" aria-live="polite"></p>
+    </form>
+  </div>
+
+  <button class="music" id="music" type="button" hidden aria-label="播放音乐">
+    <span class="music-bars"><i></i><i></i><i></i></span>
+    <span class="music-text">播放我们的歌</span>
+  </button>
+
+  <header class="hero" id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-inner">
+      <p class="eyebrow">THE TRAIN TO YOU · 2025 — 2026</p>
+      <h1 class="hero-title" id="heroTitle"></h1>
+      <p class="hero-sub" id="heroSub"></p>
+    </div>
+    <a class="scroll-hint" href="#journey">向下滑动，列车出发<span></span></a>
+  </header>
+
+  <main>
+    <section class="section journey" id="journey">
+      <div class="section-head reveal">
+        <p class="eyebrow">TIMETABLE</p>
+        <h2>列车时刻表</h2>
+        <p class="section-sub" id="together"></p>
+      </div>
+      <ol class="track" id="track"></ol>
+    </section>
+
+    <section class="section drawings">
+      <div class="section-head reveal">
+        <p class="eyebrow">CARRIAGE · SKETCHBOOK</p>
+        <h2>你画的我们</h2>
+        <p class="section-sub">这节车厢里，挂满了你的画。</p>
+      </div>
+      <div class="sketch-grid" id="drawings"></div>
+    </section>
+
+    <section class="section daily">
+      <div class="section-head reveal">
+        <p class="eyebrow">OUT OF THE WINDOW</p>
+        <h2>车窗外的日常</h2>
+        <p class="section-sub">见不到面的日子里，你发来的那些。</p>
+      </div>
+      <div class="daily-grid" id="daily"></div>
+    </section>
+
+    <section class="section arrival" id="arrival">
+      <div class="lamp" aria-hidden="true"></div>
+      <div class="section-head center reveal">
+        <p class="eyebrow">NEXT STOP</p>
+        <h2>下一站 · 十九岁</h2>
+        <p class="arrival-status" id="arrivalStatus"></p>
+      </div>
+      <div class="envelope-wrap reveal">
+        <button class="envelope" id="envelope" type="button">
+          <span class="envelope-flap" aria-hidden="true"></span>
+          <span class="envelope-to" id="envelopeTo"></span>
+          <span class="envelope-hint">轻点拆开</span>
+        </button>
+        <article class="letter" id="letter" hidden></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ending">
+    <p id="ending"></p>
+  </footer>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lb-close" type="button" aria-label="关闭">×</button>
+    <button class="lb-prev" type="button" aria-label="上一张">‹</button>
+    <figure>
+      <img alt="">
+      <figcaption></figcaption>
+    </figure>
+    <button class="lb-next" type="button" aria-label="下一张">›</button>
+    <span class="lb-count"></span>
+  </div>
+
+  <audio id="audio" preload="metadata" loop></audio>
+  <script src="main.js"></script>
+  <script src="vault.js"></script>
+</body>
+</html>
